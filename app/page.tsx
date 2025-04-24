@@ -24,11 +24,6 @@ export default function PortfolioPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
   const [activeProject, setActiveProject] = useState<number | null>(null)
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
-  const [cursorText, setCursorText] = useState("")
-  const [cursorVariant, setCursorVariant] = useState("default")
-  const [cursorColor, setCursorColor] = useState("#111")
-  const cursorRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLDivElement>(null)
   const projectsRef = useRef<HTMLDivElement>(null)
   const [activeFilter, setActiveFilter] = useState("all")
@@ -74,24 +69,9 @@ export default function PortfolioPage() {
       }
     }
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY })
-    }
-
     window.addEventListener("scroll", handleScroll)
-    window.addEventListener("mousemove", handleMouseMove)
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("mousemove", handleMouseMove)
-    }
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
-  useEffect(() => {
-    if (cursorRef.current) {
-      cursorRef.current.style.transform = `translate(${cursorPosition.x}px, ${cursorPosition.y}px)`
-    }
-  }, [cursorPosition])
 
   const toggleMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen)
@@ -178,90 +158,9 @@ export default function PortfolioPage() {
       ? projects
       : projects.filter((project) => project.category.toLowerCase() === activeFilter.toLowerCase())
 
-  const cursorVariants = {
-    default: {
-      width: "24px",
-      height: "24px",
-      backgroundColor: "rgba(0, 0, 0, 0)",
-      border: theme === "dark" ? "1px solid rgba(255, 255, 255, 0.5)" : "1px solid rgba(0, 0, 0, 0.5)",
-      x: cursorPosition.x - 12,
-      y: cursorPosition.y - 12,
-    },
-    text: {
-      width: "120px",
-      height: "120px",
-      backgroundColor: cursorColor,
-      mixBlendMode: "difference",
-      color: theme === "dark" ? "#000" : "#fff",
-      x: cursorPosition.x - 60,
-      y: cursorPosition.y - 60,
-    },
-    project: {
-      width: "80px",
-      height: "80px",
-      backgroundColor: cursorColor,
-      mixBlendMode: theme === "dark" ? "lighten" : "normal",
-      color: "#fff",
-      x: cursorPosition.x - 40,
-      y: cursorPosition.y - 40,
-    },
-  }
-
-  const skills = [
-    "Brand Identity",
-    "UI/UX Design",
-    "Frontend Development",
-    "Creative Coding",
-    "Typography",
-    "Motion Design",
-    "Art Direction",
-    "Interactive Experiences",
-    "Editorial Design",
-    "Animation",
-    "WebGL & Three.js",
-  ]
-
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
       <div className="min-h-screen bg-background text-foreground selection:bg-brand-red selection:text-white dark:selection:text-black theme-transition">
-        {/* Custom Cursor */}
-        <motion.div
-  ref={cursorRef}
-  className="fixed top-0 left-0 rounded-full pointer-events-none z-50 flex items-center justify-center hidden md:flex custom-cursor"
-  style={{ mixBlendMode: "difference" }} // 👈 move it here
-  variants={{
-    default: { x: 0, y: 0, width: "32px", height: "32px", backgroundColor: "#000", border: "2px solid #fff" },
-    text: {
-      x: 0,
-      y: 0,
-      width: "80px",
-      height: "80px",
-      backgroundColor: "#fff",
-      color: "#000", // fine if used via class/style
-    },
-    project: {
-      x: 0,
-      y: 0,
-      width: "200px",
-      height: "200px",
-      backgroundColor: "#000",
-      border: "2px solid #fff",
-    },
-  }}
-  animate={cursorVariant}
-  transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
->
-  <span
-    className={cn(
-      "text-sm font-light tracking-wider whitespace-nowrap",
-      cursorText ? "opacity-100" : "opacity-0"
-    )}
-  >
-    {cursorText}
-  </span>
-</motion.div>
-
-
         {/* Header/Navigation */}
         <header className="fixed top-0 z-40 w-full py-8 theme-bg-transition">
           <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -270,15 +169,6 @@ export default function PortfolioPage() {
                 <Link
                   href="/"
                   className="text-lg tracking-tight font-light"
-                  onMouseEnter={() => {
-                    setCursorText("Home")
-                    setCursorVariant("text")
-                    setCursorColor(theme === "dark" ? "#fff" : "#111")
-                  }}
-                  onMouseLeave={() => {
-                    setCursorText("")
-                    setCursorVariant("default")
-                  }}
                 >
                   ALEX KIM
                 </Link>
@@ -294,15 +184,6 @@ export default function PortfolioPage() {
                         "text-sm font-light capitalize transition-colors relative py-2",
                         activeSection === section ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                       )}
-                      onMouseEnter={() => {
-                        setCursorText(section)
-                        setCursorVariant("text")
-                        setCursorColor(theme === "dark" ? "#fff" : "#111")
-                      }}
-                      onMouseLeave={() => {
-                        setCursorText("")
-                        setCursorVariant("default")
-                      }}
                     >
                       {section}
                       {activeSection === section && (
@@ -316,17 +197,7 @@ export default function PortfolioPage() {
                   </Magnetic>
                 ))}
 
-                <ThemeToggle
-                  onMouseEnter={() => {
-                    setCursorText("Theme")
-                    setCursorVariant("text")
-                    setCursorColor(theme === "dark" ? "#fff" : "#111")
-                  }}
-                  onMouseLeave={() => {
-                    setCursorText("")
-                    setCursorVariant("default")
-                  }}
-                />
+                <ThemeToggle />
               </nav>
 
               {/* Mobile Menu Button */}
@@ -374,34 +245,21 @@ export default function PortfolioPage() {
           <section id="home" className="min-h-screen flex items-center pt-20 theme-bg-transition" ref={heroRef}>
             <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div style={{ opacity: heroOpacity, y: heroY, scale: heroScale }} className="max-w-3xl">
-              <AnimatedText
-                  text={["Distinctive", "design that"]}
-                  el="h1"
-                  className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.1] tracking-tight"
-                  animation={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
-                    },
-                  }}
-                />
-              <div
-                onMouseEnter={() => {
-                  setCursorText("Hello");
-                  setCursorVariant("text");
-                  setCursorColor(theme === "dark" ? "#fff" : "#111");
-                }}
-                onMouseLeave={() => {
-                  setCursorText("");
-                  setCursorVariant("default");
-                }}
-              >
-               
-              </div>
-
-             
+                <div>
+                  <AnimatedText
+                    text={["Distinctive", "design that"]}
+                    el="h1"
+                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.1] tracking-tight"
+                    animation={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+                      },
+                    }}
+                  />
+                </div>
 
                 <motion.span
                   className="block mt-2 italic font-medium text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
@@ -419,15 +277,6 @@ export default function PortfolioPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   className="mt-12 text-lg text-muted-foreground font-light max-w-xl leading-relaxed"
-                  onMouseEnter={() => {
-                    setCursorText("About me")
-                    setCursorVariant("text")
-                    setCursorColor(theme === "dark" ? "#fff" : "#111")
-                  }}
-                  onMouseLeave={() => {
-                    setCursorText("")
-                    setCursorVariant("default")
-                  }}
                 >
                   I'm a designer and creative developer crafting distinctive digital experiences that stand out through
                   refined aesthetics and thoughtful interactions.
@@ -443,15 +292,6 @@ export default function PortfolioPage() {
                     <Button
                       asChild
                       className="rounded-none bg-gradient-to-r from-brand-red to-brand-orange hover:from-brand-orange hover:to-brand-red text-white border-0 px-8 py-6 h-auto text-sm font-light transition-all duration-500 dark:from-brand-red/90 dark:to-brand-orange/90 dark:hover:from-brand-orange/90 dark:hover:to-brand-red/90"
-                      onMouseEnter={() => {
-                        setCursorText("View Work")
-                        setCursorVariant("text")
-                        setCursorColor("#FF5470")
-                      }}
-                      onMouseLeave={() => {
-                        setCursorText("")
-                        setCursorVariant("default")
-                      }}
                     >
                       <Link href="#work" className="flex items-center gap-2">
                         View Work
@@ -505,15 +345,6 @@ export default function PortfolioPage() {
                             "text-sm font-light capitalize transition-colors relative",
                             activeFilter === filter ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                           )}
-                          onMouseEnter={() => {
-                            setCursorText(filter)
-                            setCursorVariant("text")
-                            setCursorColor(theme === "dark" ? "#fff" : "#111")
-                          }}
-                          onMouseLeave={() => {
-                            setCursorText("")
-                            setCursorVariant("default")
-                          }}
                         >
                           {filter}
                           {activeFilter === filter && (
@@ -535,17 +366,8 @@ export default function PortfolioPage() {
                       <Reveal key={project.id} delay={index * 0.1} once={false}>
                         <ProjectCard
                           project={project}
-                          onMouseEnter={() => {
-                            setActiveProject(project.id)
-                            setCursorText("View")
-                            setCursorVariant("project")
-                            setCursorColor(project.color)
-                          }}
-                          onMouseLeave={() => {
-                            setActiveProject(null)
-                            setCursorText("")
-                            setCursorVariant("default")
-                          }}
+                          onMouseEnter={() => setActiveProject(project.id)}
+                          onMouseLeave={() => setActiveProject(null)}
                           isActive={activeProject === project.id}
                         />
                       </Reveal>
@@ -576,15 +398,6 @@ export default function PortfolioPage() {
                   <motion.div
                     variants={fadeIn}
                     className="relative"
-                    onMouseEnter={() => {
-                      setCursorText("Hello")
-                      setCursorVariant("text")
-                      setCursorColor("#0496FF")
-                    }}
-                    onMouseLeave={() => {
-                      setCursorText("")
-                      setCursorVariant("default")
-                    }}
                   >
                     <Reveal>
                       <div className="relative aspect-[3/4] overflow-hidden">
@@ -612,18 +425,7 @@ export default function PortfolioPage() {
                   </motion.div>
 
                   <motion.div variants={fadeIn} className="space-y-12">
-                    <div
-                      className="space-y-6"
-                      onMouseEnter={() => {
-                        setCursorText("About me")
-                        setCursorVariant("text")
-                        setCursorColor("#0496FF")
-                      }}
-                      onMouseLeave={() => {
-                        setCursorText("")
-                        setCursorVariant("default")
-                      }}
-                    >
+                    <div className="space-y-6">
                       <TextReveal>
                         <h3 className="text-2xl md:text-3xl font-normal tracking-tight">Designer & Developer</h3>
                       </TextReveal>
@@ -657,18 +459,7 @@ export default function PortfolioPage() {
                     </div>
 
                     <div className="grid gap-12 sm:grid-cols-2">
-                      <div
-                        className="space-y-6"
-                        onMouseEnter={() => {
-                          setCursorText("Skills")
-                          setCursorVariant("text")
-                          setCursorColor("#0496FF")
-                        }}
-                        onMouseLeave={() => {
-                          setCursorText("")
-                          setCursorVariant("default")
-                        }}
-                      >
+                      <div className="space-y-6">
                         <TextReveal>
                           <h4 className="text-lg md:text-xl font-medium tracking-tight">Design</h4>
                         </TextReveal>
@@ -690,18 +481,7 @@ export default function PortfolioPage() {
                         </ul>
                       </div>
 
-                      <div
-                        className="space-y-6"
-                        onMouseEnter={() => {
-                          setCursorText("Skills")
-                          setCursorVariant("text")
-                          setCursorColor("#0496FF")
-                        }}
-                        onMouseLeave={() => {
-                          setCursorText("")
-                          setCursorVariant("default")
-                        }}
-                      >
+                      <div className="space-y-6">
                         <TextReveal>
                           <h4 className="text-lg md:text-xl font-medium tracking-tight">Development</h4>
                         </TextReveal>
@@ -728,18 +508,7 @@ export default function PortfolioPage() {
                       </div>
                     </div>
 
-                    <div
-                      className="pt-4"
-                      onMouseEnter={() => {
-                        setCursorText("Experience")
-                        setCursorVariant("text")
-                        setCursorColor("#0496FF")
-                      }}
-                      onMouseLeave={() => {
-                        setCursorText("")
-                        setCursorVariant("default")
-                      }}
-                    >
+                    <div className="pt-4">
                       <TextReveal>
                         <h4 className="text-lg md:text-xl font-medium tracking-tight mb-6">Experience</h4>
                       </TextReveal>
@@ -808,15 +577,6 @@ export default function PortfolioPage() {
                   <motion.div
                     variants={fadeIn}
                     className="space-y-8"
-                    onMouseEnter={() => {
-                      setCursorText("Contact")
-                      setCursorVariant("text")
-                      setCursorColor("#06D6A0")
-                    }}
-                    onMouseLeave={() => {
-                      setCursorText("")
-                      setCursorVariant("default")
-                    }}
                   >
                     <TextReveal>
                       <h3 className="text-2xl md:text-3xl font-normal tracking-tight">Let's work together</h3>
@@ -863,15 +623,6 @@ export default function PortfolioPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-sm font-light hover:text-brand-green dark:hover:text-brand-green/90 transition-colors"
-                                onMouseEnter={() => {
-                                  setCursorText("Instagram")
-                                  setCursorVariant("text")
-                                  setCursorColor("#06D6A0")
-                                }}
-                                onMouseLeave={() => {
-                                  setCursorText("")
-                                  setCursorVariant("default")
-                                }}
                               >
                                 Instagram
                               </a>
@@ -882,15 +633,6 @@ export default function PortfolioPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-sm font-light hover:text-brand-green dark:hover:text-brand-green/90 transition-colors"
-                                onMouseEnter={() => {
-                                  setCursorText("LinkedIn")
-                                  setCursorVariant("text")
-                                  setCursorColor("#06D6A0")
-                                }}
-                                onMouseLeave={() => {
-                                  setCursorText("")
-                                  setCursorVariant("default")
-                                }}
                               >
                                 LinkedIn
                               </a>
@@ -901,15 +643,6 @@ export default function PortfolioPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-sm font-light hover:text-brand-green dark:hover:text-brand-green/90 transition-colors"
-                                onMouseEnter={() => {
-                                  setCursorText("Twitter")
-                                  setCursorVariant("text")
-                                  setCursorColor("#06D6A0")
-                                }}
-                                onMouseLeave={() => {
-                                  setCursorText("")
-                                  setCursorVariant("default")
-                                }}
                               >
                                 Twitter
                               </a>
@@ -921,18 +654,7 @@ export default function PortfolioPage() {
                   </motion.div>
 
                   <motion.div variants={fadeIn}>
-                    <form
-                      className="space-y-8"
-                      onMouseEnter={() => {
-                        setCursorText("Message")
-                        setCursorVariant("text")
-                        setCursorColor("#06D6A0")
-                      }}
-                      onMouseLeave={() => {
-                        setCursorText("")
-                        setCursorVariant("default")
-                      }}
-                    >
+                    <form className="space-y-8">
                       <Reveal delay={0.1}>
                         <div className="space-y-3">
                           <Label htmlFor="name" className="text-sm font-normal">
@@ -1005,15 +727,6 @@ export default function PortfolioPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs font-light hover:text-brand-red dark:hover:text-brand-red/90 transition-colors"
-                    onMouseEnter={() => {
-                      setCursorText("Instagram")
-                      setCursorVariant("text")
-                      setCursorColor("#FF5470")
-                    }}
-                    onMouseLeave={() => {
-                      setCursorText("")
-                      setCursorVariant("default")
-                    }}
                   >
                     Instagram
                   </a>
@@ -1024,15 +737,6 @@ export default function PortfolioPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs font-light hover:text-brand-blue dark:hover:text-brand-blue/90 transition-colors"
-                    onMouseEnter={() => {
-                      setCursorText("LinkedIn")
-                      setCursorVariant("text")
-                      setCursorColor("#0496FF")
-                    }}
-                    onMouseLeave={() => {
-                      setCursorText("")
-                      setCursorVariant("default")
-                    }}
                   >
                     LinkedIn
                   </a>
@@ -1043,15 +747,6 @@ export default function PortfolioPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs font-light hover:text-brand-green dark:hover:text-brand-green/90 transition-colors"
-                    onMouseEnter={() => {
-                      setCursorText("Twitter")
-                      setCursorVariant("text")
-                      setCursorColor("#06D6A0")
-                    }}
-                    onMouseLeave={() => {
-                      setCursorText("")
-                      setCursorVariant("default")
-                    }}
                   >
                     Twitter
                   </a>
