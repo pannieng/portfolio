@@ -829,9 +829,6 @@ video {
 .hidden {
   display: none;
 }
-.aspect-\[3\/4\] {
-  aspect-ratio: 3/4;
-}
 .aspect-\[4\/5\] {
   aspect-ratio: 4/5;
 }
@@ -1665,9 +1662,6 @@ video {
 }
 .font-semibold {
   font-weight: 600;
-}
-.font-bold {
-  font-weight: 700;
 }
 .capitalize {
   text-transform: capitalize;
@@ -3405,12 +3399,12 @@ a:hover {
     text-align: left;
   }
 
-  .sm\:text-6xl {
-    font-size: 3.5rem;
-  }
-
   .sm\:text-5xl {
     font-size: 2.75rem;
+  }
+
+  .sm\:text-6xl {
+    font-size: 3.5rem;
   }
 
   .data-\[state\=open\]\:sm\:slide-in-from-bottom-full[data-state="open"] {
@@ -3548,12 +3542,12 @@ a:hover {
     padding-right: 2rem;
   }
 
-  .lg\:text-8xl {
-    font-size: 5.5rem;
-  }
-
   .lg\:text-6xl {
     font-size: 3.5rem;
+  }
+
+  .lg\:text-8xl {
+    font-size: 5.5rem;
   }
 }
 

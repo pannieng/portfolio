@@ -406,12 +406,13 @@ export default function PortfolioPage() {
                     className="relative"
                   >
                     <Reveal>
-                      <div className="relative aspect-[3/4] overflow-hidden">
+                      <div className="relative aspect-square overflow-hidden rounded-lg">
                         <Image
-                          src="/placeholder.svg?height=600&width=450"
-                          alt="Alex Kim"
-                          fill
-                          className="object-cover dark-image"
+                          src="/profile.jpg"
+                          alt="Pannie Ng"
+                          width={600}
+                          height={600}
+                          className="object-cover"
                           priority
                         />
                         <motion.div
