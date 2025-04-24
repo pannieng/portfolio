@@ -718,7 +718,7 @@ export default function PortfolioPage() {
               </p>
 
               <div className="flex gap-8">
-                <Magnetic strength={5}>
+                {/* <Magnetic strength={5}>
                   <a
                     href="https://instagram.com"
                     target="_blank"
@@ -727,10 +727,10 @@ export default function PortfolioPage() {
                   >
                     Instagram
                   </a>
-                </Magnetic>
+                </Magnetic> */}
                 <Magnetic strength={5}>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/pannie-ng-shin-lu-176002244?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs font-light hover:text-brand-blue dark:hover:text-brand-blue/90 transition-colors"
@@ -738,7 +738,7 @@ export default function PortfolioPage() {
                     LinkedIn
                   </a>
                 </Magnetic>
-                <Magnetic strength={5}>
+                {/* <Magnetic strength={5}>
                   <a
                     href="https://twitter.com"
                     target="_blank"
@@ -747,7 +747,7 @@ export default function PortfolioPage() {
                   >
                     Twitter
                   </a>
-                </Magnetic>
+                </Magnetic> */}
               </div>
             </div>
           </div>
