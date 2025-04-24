@@ -13,9 +13,9 @@ const jost = Jost({
 })
 
 export const metadata: Metadata = {
-  title: "Alex Kim | Distinctive Designer & Developer",
+  title: "Pannie Ng | Software Engineer",
   description:
-    "Portfolio of Alex Kim, a designer and developer creating distinctive digital experiences that stand out.",
+    "Portfolio of Pannie — a software engineer with experience in freelance projects, full-stack development, and web applications for testing instruments. Currently working in the field of industrial automation, creating innovative solutions for automated systems.",
     generator: 'v0.dev'
 }
 

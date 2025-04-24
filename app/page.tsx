@@ -99,58 +99,58 @@ export default function PortfolioPage() {
   const projects = [
     {
       id: 1,
-      title: "Essence",
-      description: "Brand identity system",
-      category: "Branding",
-      year: "2023",
+      title: "Stock Trend Classification System",
+      description: "Classify stock trends",
+      category: "AI",
+      year: "2024",
       image: "/placeholder.svg?height=600&width=800",
       color: "#FF5470",
     },
     {
       id: 2,
-      title: "Horizon",
-      description: "Digital experience",
-      category: "Digital",
-      year: "2023",
+      title: "Plant AI System",
+      description: "Checking on plant health condition system",
+      category: "AI",
+      year: "2025",
       image: "/placeholder.svg?height=600&width=800",
       color: "#0496FF",
     },
     {
       id: 3,
-      title: "Monochrome",
-      description: "Photography series",
-      category: "Photography",
+      title: "Recipe Collection System",
+      description: "Collect Recipe",
+      category: "Website",
       year: "2022",
       image: "/placeholder.svg?height=600&width=800",
       color: "#6665DD",
     },
-    {
-      id: 4,
-      title: "Whisper",
-      description: "Packaging design",
-      category: "Product",
-      year: "2022",
-      image: "/placeholder.svg?height=600&width=800",
-      color: "#06D6A0",
-    },
-    {
-      id: 5,
-      title: "Lucid",
-      description: "Interactive installation",
-      category: "Digital",
-      year: "2023",
-      image: "/placeholder.svg?height=600&width=800",
-      color: "#FFC43D",
-    },
-    {
-      id: 6,
-      title: "Serenity",
-      description: "Editorial design",
-      category: "Print",
-      year: "2022",
-      image: "/placeholder.svg?height=600&width=800",
-      color: "#EF476F",
-    },
+    // {
+    //   id: 4,
+    //   title: "Whisper",
+    //   description: "Packaging design",
+    //   category: "Product",
+    //   year: "2022",
+    //   image: "/placeholder.svg?height=600&width=800",
+    //   color: "#06D6A0",
+    // },
+    // {
+    //   id: 5,
+    //   title: "Lucid",
+    //   description: "Interactive installation",
+    //   category: "Digital",
+    //   year: "2023",
+    //   image: "/placeholder.svg?height=600&width=800",
+    //   color: "#FFC43D",
+    // },
+    // {
+    //   id: 6,
+    //   title: "Serenity",
+    //   description: "Editorial design",
+    //   category: "Print",
+    //   year: "2022",
+    //   image: "/placeholder.svg?height=600&width=800",
+    //   color: "#EF476F",
+    // },
   ]
 
   const filteredProjects =
@@ -170,7 +170,7 @@ export default function PortfolioPage() {
                   href="/"
                   className="text-lg tracking-tight font-light"
                 >
-                  ALEX KIM
+                  PANNIE NG
                 </Link>
               </Magnetic>
 
@@ -247,9 +247,9 @@ export default function PortfolioPage() {
               <motion.div style={{ opacity: heroOpacity, y: heroY, scale: heroScale }} className="max-w-3xl">
                 <div>
                   <AnimatedText
-                    text={["Distinctive", "design that"]}
+                    text={["Crafting Innovative", "Solutions with"]}
                     el="h1"
-                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.1] tracking-tight"
+                    className="text-5xl sm:text-5xl md:text-7xl lg:text-8xl font-light leading-[1.1] tracking-tight"
                     animation={{
                       hidden: { opacity: 0, y: 20 },
                       visible: {
@@ -262,13 +262,13 @@ export default function PortfolioPage() {
                 </div>
 
                 <motion.span
-                  className="block mt-2 italic font-medium text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
+                  className="block mt-2 italic font-medium text-5xl sm:text-6xl md:text-7xl lg:text-6xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-red to-brand-orange dark:from-brand-red/90 dark:to-brand-orange/90 dark-gradient">
-                    stands out.
+                  Automation, Full-Stack, and AI.
                   </span>
                 </motion.span>
 
@@ -278,8 +278,13 @@ export default function PortfolioPage() {
                   transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   className="mt-12 text-lg text-muted-foreground font-light max-w-xl leading-relaxed"
                 >
-                  I'm a designer and creative developer crafting distinctive digital experiences that stand out through
-                  refined aesthetics and thoughtful interactions.
+                Welcome to my portfolio. I am Pannie, a skilled software engineer with extensive experience in freelance projects, full-stack development, 
+                and web development for testing instruments. Currently, my work is focused on industrial automation, where I leverage my technical expertise to design and 
+                implement innovative solutions. In addition, I am actively exploring AI projects, with a strong interest in integrating artificial intelligence technologies into practical applications. 
+                This portfolio website showcases a selection of my work, reflecting my commitment to delivering high-quality, impactful, and well-engineered systems.
+                 I am always open to collaboration and eager to contribute to meaningful projects. Thank you for visiting.
+
+
                 </motion.p>
 
                 <motion.div
@@ -337,7 +342,8 @@ export default function PortfolioPage() {
                   </div>
 
                   <div className="mt-8 md:mt-0 flex flex-wrap gap-6">
-                    {["all", "branding", "digital", "photography", "print", "product"].map((filter, index) => (
+                    {/* {["all", "AI", "Website", "photography", "print", "product"].map((filter, index) => ( */}
+                     {["all", "AI", "Website"].map((filter, index) => (
                       <Reveal key={filter} delay={index * 0.1}>
                         <button
                           onClick={() => setActiveFilter(filter)}
@@ -427,39 +433,31 @@ export default function PortfolioPage() {
                   <motion.div variants={fadeIn} className="space-y-12">
                     <div className="space-y-6">
                       <TextReveal>
-                        <h3 className="text-2xl md:text-3xl font-normal tracking-tight">Designer & Developer</h3>
+                        <h3 className="text-2xl md:text-3xl font-normal tracking-tight">Software Engineer</h3>
                       </TextReveal>
 
                       <Reveal delay={0.1}>
                         <p className="text-foreground/80 leading-relaxed font-light text-base md:text-lg">
-                          I'm Alex, a designer and developer focused on creating distinctive digital experiences. My
-                          work combines clean aesthetics with thoughtful interactions to help brands{" "}
-                          <span className="text-brand-blue dark:text-brand-blue/90 font-normal">stand out</span> in
-                          meaningful ways.
+                          I'm Pannie, a  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">fresh graduate</span> with a major in <span className="text-brand-blue dark:text-brand-blue/90 font-normal">Computer Science</span> and less than a year of experience in <span className="text-brand-blue dark:text-brand-blue/90 font-normal">industrial automation</span>. I am passionate about exploring  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">AI projects</span> and using technology to drive <span className="text-brand-blue dark:text-brand-blue/90 font-normal">innovation</span>.
                         </p>
                       </Reveal>
 
                       <Reveal delay={0.2}>
                         <p className="text-foreground/80 leading-relaxed font-light text-base md:text-lg">
-                          With over 8 years of experience, I've collaborated with brands and studios around the world,
-                          bringing a distinctive aesthetic to every project that helps them{" "}
-                          <span className="text-brand-indigo dark:text-brand-indigo/90 font-normal">stand out</span>{" "}
-                          from competitors.
+                          My journey so far has included working on  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">automation projects</span> that combine my technical skills with  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">problem-solving abilities</span> to deliver  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">efficient solutions</span>. In addition, I have contributed to  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">web development projects</span> involving testing instruments and  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">full-stack development</span>.
                         </p>
                       </Reveal>
 
                       <Reveal delay={0.3}>
                         <p className="text-foreground/80 leading-relaxed font-light text-base md:text-lg">
-                          My approach combines strategic thinking with artistic sensibility—creating work that
-                          communicates clearly while{" "}
-                          <span className="text-brand-blue dark:text-brand-blue/90 font-normal">standing out</span>{" "}
-                          through subtle, sophisticated design choices.
+                          I approach every project with a blend of  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">creativity</span>,  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">technical expertise</span>, and  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">attention to detail</span>, always striving to create  <span className="text-brand-blue dark:text-brand-blue/90 font-normal">impactful systems</span> that improve functionality and user experience.
                         </p>
                       </Reveal>
+
                     </div>
 
                     <div className="grid gap-12 sm:grid-cols-2">
-                      <div className="space-y-6">
+                      {/* <div className="space-y-6">
                         <TextReveal>
                           <h4 className="text-lg md:text-xl font-medium tracking-tight">Design</h4>
                         </TextReveal>
@@ -479,20 +477,20 @@ export default function PortfolioPage() {
                             ),
                           )}
                         </ul>
-                      </div>
+                      </div>  */}
 
                       <div className="space-y-6">
                         <TextReveal>
-                          <h4 className="text-lg md:text-xl font-medium tracking-tight">Development</h4>
+                          <h4 className="text-lg md:text-xl font-medium tracking-tight">Technical Skills</h4>
                         </TextReveal>
 
                         <ul className="space-y-3 text-foreground/80 font-light text-base">
                           {[
-                            "Frontend Development",
-                            "Creative Coding",
-                            "Interactive Experiences",
-                            "Animation",
-                            "WebGL & Three.js",
+                           "HTML, CSS, JavaScript, PHP, Python, Java, MySQL",
+                          "Version Control with Git & GitHub",
+                          "Frameworks: Laravel PHP",
+                          "Tools: VS Code, PyCharm, IntelliJ, Android Studio, Jupyter Notebook",
+                          "Platforms: VirtualBox, Eggplant (SenseTalk)",
                           ].map((skill, index) => (
                             <Reveal key={skill} delay={0.1 + index * 0.1}>
                               <li className="flex items-baseline gap-3">
@@ -517,11 +515,11 @@ export default function PortfolioPage() {
                         <Reveal delay={0.1}>
                           <div className="flex justify-between items-start border-b border-border pb-6">
                             <div>
-                              <h5 className="font-normal text-base md:text-lg">Senior Designer</h5>
-                              <p className="text-sm text-muted-foreground font-light">Mono Studio, Stockholm</p>
+                              <h5 className="font-normal text-base md:text-lg">Software Engineer</h5>
+                              <p className="text-sm text-muted-foreground font-light">Greatech, Penang</p>
                             </div>
                             <span className="text-sm text-brand-blue dark:text-brand-blue/90 font-medium">
-                              2020—Present
+                              2024—Present
                             </span>
                           </div>
                         </Reveal>
@@ -529,11 +527,11 @@ export default function PortfolioPage() {
                         <Reveal delay={0.2}>
                           <div className="flex justify-between items-start border-b border-border pb-6">
                             <div>
-                              <h5 className="font-normal text-base md:text-lg">UI/UX Designer</h5>
-                              <p className="text-sm text-muted-foreground font-light">Minimal Agency, Copenhagen</p>
+                              <h5 className="font-normal text-base md:text-lg">QA Software Engineer</h5>
+                              <p className="text-sm text-muted-foreground font-light">Keysight, Penang</p>
                             </div>
                             <span className="text-sm text-brand-indigo dark:text-brand-indigo/90 font-medium">
-                              2017—2020
+                              May 2023—Dec 2023
                             </span>
                           </div>
                         </Reveal>
@@ -541,11 +539,11 @@ export default function PortfolioPage() {
                         <Reveal delay={0.3}>
                           <div className="flex justify-between items-start">
                             <div>
-                              <h5 className="font-normal text-base md:text-lg">Visual Designer</h5>
-                              <p className="text-sm text-muted-foreground font-light">Form Collective, Berlin</p>
+                              <h5 className="font-normal text-base md:text-lg">Freelance software developer</h5>
+                              <p className="text-sm text-muted-foreground font-light">The Reamers Envision Sdn Bhd, Penang</p>
                             </div>
                             <span className="text-sm text-brand-purple dark:text-brand-purple/90 font-medium">
-                              2015—2017
+                              Sep 2022—Nov 2022
                             </span>
                           </div>
                         </Reveal>
@@ -584,10 +582,8 @@ export default function PortfolioPage() {
 
                     <Reveal>
                       <p className="text-foreground/80 leading-relaxed font-light text-base md:text-lg">
-                        I'm currently available for freelance projects and collaborations. If you have a project that
-                        needs to{" "}
-                        <span className="text-brand-green dark:text-brand-green/90 font-normal">stand out</span> through
-                        distinctive design and thoughtful execution, let's talk.
+                      I'm currently open to freelance and work opportunities. If you're looking for a dedicated software engineer{" "}
+                        <span className="text-brand-green dark:text-brand-green/90 font-normal">to bring innovation and impact to your project,</span> feel free to reach out.
                       </p>
                     </Reveal>
 
@@ -597,10 +593,10 @@ export default function PortfolioPage() {
                           <p className="text-sm text-muted-foreground font-light">Email</p>
                           <Magnetic strength={10}>
                             <a
-                              href="mailto:hello@alexkim.design"
+                              href="mailto:pannie.shin@gmail.com"
                               className="font-light text-brand-green dark:text-brand-green/90 hover:text-muted-foreground transition-colors"
                             >
-                              hello@alexkim.design
+                              pannie.shin@gmail.com
                             </a>
                           </Magnetic>
                         </div>
@@ -609,7 +605,7 @@ export default function PortfolioPage() {
                       <Reveal delay={0.2}>
                         <div>
                           <p className="text-sm text-muted-foreground font-light">Based in</p>
-                          <p className="font-light">Stockholm, Sweden</p>
+                          <p className="font-light">Penang</p>
                         </div>
                       </Reveal>
 
@@ -617,7 +613,7 @@ export default function PortfolioPage() {
                         <div>
                           <p className="text-sm text-muted-foreground font-light">Social</p>
                           <div className="flex gap-6 mt-1">
-                            <Magnetic strength={10}>
+                            {/* <Magnetic strength={10}>
                               <a
                                 href="https://instagram.com"
                                 target="_blank"
@@ -626,10 +622,10 @@ export default function PortfolioPage() {
                               >
                                 Instagram
                               </a>
-                            </Magnetic>
+                            </Magnetic> */}
                             <Magnetic strength={10}>
                               <a
-                                href="https://linkedin.com"
+                                href="https://www.linkedin.com/in/pannie-ng-shin-lu-176002244?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-sm font-light hover:text-brand-green dark:hover:text-brand-green/90 transition-colors"
@@ -637,7 +633,7 @@ export default function PortfolioPage() {
                                 LinkedIn
                               </a>
                             </Magnetic>
-                            <Magnetic strength={10}>
+                            {/* <Magnetic strength={10}>
                               <a
                                 href="https://twitter.com"
                                 target="_blank"
@@ -646,7 +642,7 @@ export default function PortfolioPage() {
                               >
                                 Twitter
                               </a>
-                            </Magnetic>
+                            </Magnetic> */}
                           </div>
                         </div>
                       </Reveal>
@@ -689,7 +685,7 @@ export default function PortfolioPage() {
                           </Label>
                           <textarea
                             id="message"
-                            placeholder="Tell me about your project..."
+                            placeholder="Message ...."
                             className="w-full border-0 border-b border-border rounded-none px-0 py-3 h-auto focus-visible:ring-0 focus-visible:border-brand-green dark:focus-visible:border-brand-green/90 bg-transparent font-light resize-none min-h-[120px]"
                           />
                         </div>

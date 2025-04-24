@@ -1666,6 +1666,9 @@ video {
 .font-semibold {
   font-weight: 600;
 }
+.font-bold {
+  font-weight: 700;
+}
 .capitalize {
   text-transform: capitalize;
 }
@@ -1687,9 +1690,6 @@ video {
 }
 .tracking-tight {
   letter-spacing: -.02em;
-}
-.tracking-wider {
-  letter-spacing: .04em;
 }
 .tracking-widest {
   letter-spacing: .06em;
@@ -1773,9 +1773,6 @@ video {
 }
 .opacity-0 {
   opacity: 0;
-}
-.opacity-100 {
-  opacity: 1;
 }
 .opacity-50 {
   opacity: 0.5;
@@ -3412,6 +3409,10 @@ a:hover {
     font-size: 3.5rem;
   }
 
+  .sm\:text-5xl {
+    font-size: 2.75rem;
+  }
+
   .data-\[state\=open\]\:sm\:slide-in-from-bottom-full[data-state="open"] {
     --tw-enter-translate-y: 100%;
   }
@@ -3549,6 +3550,10 @@ a:hover {
 
   .lg\:text-8xl {
     font-size: 5.5rem;
+  }
+
+  .lg\:text-6xl {
+    font-size: 3.5rem;
   }
 }
 
