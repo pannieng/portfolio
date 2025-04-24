@@ -1,0 +1,67 @@
+/* Theme transition styles */
+:root {
+  --theme-transition-duration: 500ms;
+  --theme-transition-timing: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.theme-changing * {
+  transition-duration: var(--theme-transition-duration);
+  transition-timing-function: var(--theme-transition-timing);
+}
+
+/* Base transitions for theme changes */
+html.theme-changing {
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* Specific element transitions */
+.theme-changing .bg-background,
+.theme-changing .bg-foreground,
+.theme-changing .bg-card,
+.theme-changing .bg-primary,
+.theme-changing .bg-secondary,
+.theme-changing .bg-muted,
+.theme-changing .bg-accent {
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.theme-changing .text-foreground,
+.theme-changing .text-background,
+.theme-changing .text-card-foreground,
+.theme-changing .text-primary-foreground,
+.theme-changing .text-secondary-foreground,
+.theme-changing .text-muted-foreground,
+.theme-changing .text-accent-foreground {
+  transition: color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+.theme-changing .border-border {
+  transition: border-color var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* Special effects during theme change */
+.theme-changing .theme-fade {
+  animation: themeFade var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+@keyframes themeFade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Gradient adjustments during theme change */
+.theme-changing .bg-gradient-to-r {
+  transition: background-image var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* Image adjustments during theme change */
+.theme-changing img {
+  transition: filter var(--theme-transition-duration) var(--theme-transition-timing);
+}

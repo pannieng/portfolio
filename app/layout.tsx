@@ -1,7 +1,9 @@
 import type React from "react"
 import "@/app/globals.css"
+import "@/app/theme-transition.css"
 import { Jost } from "next/font/google"
 import type { Metadata } from "next"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const jost = Jost({
   subsets: ["latin"],
@@ -24,7 +26,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={jost.className}>{children}</body>
+      <body className={`${jost.className} antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
