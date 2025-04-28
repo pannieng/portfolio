@@ -714,7 +714,7 @@ export default function PortfolioPage() {
           <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <p className="text-sm text-muted-foreground font-light">
-                © {new Date().getFullYear()} Alex Kim. All rights reserved.
+                © {new Date().getFullYear()} Pannie Ng. All rights reserved.
               </p>
 
               <div className="flex gap-8">
